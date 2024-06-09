@@ -6,7 +6,7 @@ botが参加しているすべてのサーバーから指定したユーザー�
 [![discord.js v14.x\~](https://img.shields.io/badge/-discord.js%20v14.x~-black.svg?logo=discord&style=for-the-badge)](https://www.npmjs.com/package/discord.js)
 
 ## 起動
-[`.env.sample`](.env.sample)の.sampleを消して、botのToken,IDを入力<br>
+[.env.sample](.env.sample)の.sampleを消して、botのToken,IDを入力<br>
 `node index.js` で起動します
 
 ### コマンド
