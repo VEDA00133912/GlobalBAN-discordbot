@@ -1,0 +1,2 @@
+# GlobalBAN-discordbot
+グローバルBANbot
