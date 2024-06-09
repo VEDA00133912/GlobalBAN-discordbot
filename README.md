@@ -5,7 +5,7 @@ botが参加しているすべてのサーバーから指定したユーザー�
 ## 起動
 `node index.js` で起動します
 
-### コマンド
+|Command / コマンド|Description / 説明|
 |---|---|
 |`/grobalban`|botが参加しているサーバーからのBAN(グローバルBAN)|
 |`/ungtpbalban`|グローバルBANの解除|
