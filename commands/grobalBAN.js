@@ -6,25 +6,32 @@ module.exports = {
         .setDescription('指定されたユーザーを参加しているサーバーからBANします。')
         .addUserOption(option => option.setName('target').setDescription('BANするユーザーを選択してください。').setRequired(true)),
     async execute(interaction) {
-      if (!interaction.member.permissions.has(PermissionsBitField.Flags.BanMembers)) {
-        return interaction.reply({ content: 'あなたはコマンドを実行する権限がありません。', ephemeral: true });
-      }
+        if (!interaction.member.permissions.has(PermissionsBitField.Flags.BanMembers)) {
+            return interaction.reply({ content: 'あなたはコマンドを実行する権限がありません。', ephemeral: true });
+        }
         await interaction.deferReply({ ephemeral: true });  
 
         const target = interaction.options.getMember('target'); 
         const guildsBannedFrom = [];
-   　   const failedGuilds = [];
+        const failedGuilds = [];
 
-      try {
-        const banPromises = interaction.client.guilds.cache.map(async (guild) => {
-            try {
-                await guild.members.ban(target); 
-                guildsBannedFrom.push(guild.name);
-            } catch (error) {
-                console.error(`${guild.name}でBANに失敗`);
-                failedGuilds.push(guild.name);
-            }
-        });
+/*  グローバルBANの対象に含めたくないユーザーを指定できます
+　　　　const usersToAvoidBanning = ['USER_ID1', 'USER_ID2', 'USER_ID3'];
+
+        if (usersToAvoidBanning.includes(target.id)) {
+            return interaction.reply({ content: 'このユーザーはBANできません。', ephemeral: true });
+        }
+*/
+        try {
+            const banPromises = interaction.client.guilds.cache.map(async (guild) => {
+                try {
+                    await guild.members.ban(target); 
+                    guildsBannedFrom.push(guild.name);
+                } catch (error) {
+                    console.error(`${guild.name}でBANに失敗`);
+                    failedGuilds.push(guild.name);
+                }
+            });
 
             await Promise.all(banPromises);
 
